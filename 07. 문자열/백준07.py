@@ -94,3 +94,34 @@ for i in range(len(a)):
     elif (87<=ord(a[i:i+1])<=90):
          time += 10
 print(time)
+#2941
+import sys
+a = sys.stdin.readline().strip()
+a = 'dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=dz=d'
+a = a + '//'
+count = 0
+i = 0
+while a[i] != '/':
+    if a[i] == 'c':
+        if a[i+1] == '=' or a[i+1] == '-':
+            i += 1
+    elif a[i] == 'd':
+        if a[i+1] == '-':
+            i += 1
+        elif a[i+1] == 'z' and a[i+2] == '=':
+            i += 2
+    elif a[i] == 'l':
+        if a[i+1] == 'j':
+            i += 1
+    elif a[i] == 'n':
+        if a[i+1] == 'j':
+            i += 1
+    elif a[i] == 's' or a[i] == 'z':
+        print("'")
+        if a[i+1] == '=':
+            i += 1
+    print(i, a[i], end=' ')
+    i += 1
+    count += 1
+    print(count)
+print(count)
