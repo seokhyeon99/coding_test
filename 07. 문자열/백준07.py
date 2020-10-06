@@ -94,6 +94,7 @@ for i in range(len(a)):
     elif (87<=ord(a[i:i+1])<=90):
          time += 10
 print(time)
+
 #2941
 import sys
 a = sys.stdin.readline().strip()
@@ -125,3 +126,23 @@ while a[i] != '/':
     count += 1
     print(count)
 print(count)
+
+#1316
+import sys
+a = sys.stdin.readline().strip()
+count = 0
+for i in range(int(a)):
+    b = sys.stdin.readline().strip()
+    b = b + '/'
+    for j in range(len(b)-1):
+        last = []
+        for k in range(j,-1):
+            if b[j] == b[k]:
+                last.append(k)
+            if len(last) == 0:
+                count += 1
+            else:
+                if last[len(last)-1] - last[0] + 1 == len(last):
+                    count += 1
+                
+        
