@@ -131,18 +131,21 @@ print(count)
 import sys
 a = sys.stdin.readline().strip()
 count = 0
-for i in range(int(a)):
+for i in range(int(a)):#문자열 하나씩
     b = sys.stdin.readline().strip()
-    b = b + '/'
-    for j in range(len(b)-1):
+    for j in range(len(b)):#문자 하나씩
         last = []
-        for k in range(j,-1):
+        count_num = 0
+        for k in range(j):#문자앞에 반복
             if b[j] == b[k]:
                 last.append(k)
-            if len(last) == 0:
-                count += 1
-            else:
-                if last[len(last)-1] - last[0] + 1 == len(last):
-                    count += 1
-                
-        
+        print('last',last)
+        if len(last) == 0:
+            count_num += 1
+        else:
+            if last[-1] - last[0] + 1 == len(last):
+                count_num += 1
+        if count_num == len(b):
+            count += 1
+    print('count_num', count_num)
+print('count', count)
