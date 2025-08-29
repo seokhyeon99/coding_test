@@ -1,0 +1,24 @@
+# 워크플로우 이름
+name: Sync to Organization Repository
+
+# main 브랜치에 push가 일어날 때 실행
+on:
+  push:
+    branches:
+      - main # 혹은 master 브랜치
+
+# 실행될 작업 내용
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Source 레포지토리의 코드를 가져오기
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. Destination 레포지토리로 main 브랜치를 강제 푸시
+      - name: Push to destination repository
+        run: |
+          git push https://${{ secrets.DEST_PAT }}@github.com/ZHELDXPTMXM/Seokhyeon_coding_test.git main:main -f
