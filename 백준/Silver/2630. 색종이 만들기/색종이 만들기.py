@@ -8,7 +8,7 @@ for i in range(n):
 count = [0,0] # [white, blue]
     
 def search(n, x_start, y_start):
-    global count # deal with count value
+    global count # deal with count variable
     value = paper[x_start][y_start]
     for i in range(x_start, x_start+n):# check whether the color of each piece is same or not
         for j in range(y_start, y_start+n):
