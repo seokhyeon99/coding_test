@@ -2,7 +2,7 @@ import sys
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-tree = sorted(list(map(int, input().split())))
+tree = list(map(int, input().split()))
 
 # range of height: 0 ~ max(tree)
 start = 0
