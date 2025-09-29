@@ -2,8 +2,11 @@ import sys
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-tree = list(map(int, input().split()))
-
+tree = sorted(list(map(int, input().split())))
+sum_tree = [0]*n
+for i in range(n):
+    sum_tree[i] = sum_tree[i-1] + tree[i]
+    
 # range of height: 0 ~ max(tree)
 start = 0
 end = max(tree)
@@ -14,9 +17,21 @@ while(True):
         break    
     height = (start+end)//2
     sum = 0
-    for i in range(n):
-        if tree[i]-height > 0:
-            sum += tree[i]-height
+    start_n = 0
+    end_n = n-1
+    result_n = n
+    while start_n <= end_n:
+        mid = (start_n + end_n)//2
+        if tree[mid] - height > 0:
+            end_n = mid - 1
+            result_n = mid
+        else:
+            start_n = mid + 1
+    num_of_tree_over_height = n - result_n
+    if result_n == 0:
+        sum = sum_tree[n-1] - num_of_tree_over_height * height
+    else:
+        sum = sum_tree[n-1] - sum_tree[result_n - 1] - num_of_tree_over_height * height
     if sum >= m:
         start = height+1
         result = height
