@@ -20,15 +20,7 @@ def find_chained_factors(a):
 
 count = 0
 for i in range(1,n+1):
-    if checked[i]:
-        continue
-    for j in range(1,n+1):
-        if table[i][j] == 1:
-            table[i][j] = 0
-            # print(i,j)
-            if checked[i] == 0:
-                find_chained_factors(i)
-            if checked[j] == 0:
-                find_chained_factors(j)
-    count += 1
+    if not checked[i]:
+        count += 1
+        find_chained_factors(i)
 print(count)
