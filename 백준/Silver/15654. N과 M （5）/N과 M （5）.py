@@ -1,3 +1,41 @@
+# solve1
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+num = sorted(list(map(int, input().split())))
+from itertools import permutations
+result = list(permutations(num,m))
+for i in result:
+    print(*list(i))
+    
+'''
+# solve2
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+num = sorted(list(map(int, input().split())))
+
+result = []
+
+visited = [0] * n
+def permutation():
+    if len(result) == m:
+        print(*result)
+        return
+    for i in range(n):
+        if not visited[i]:
+            visited[i] = 1
+            result.append(num[i])
+            permutation()
+            result.pop()
+            visited[i] = 0
+permutation()
+'''
+
+'''
+# solve 3
 import sys
 input = sys.stdin.readline
 
@@ -53,3 +91,4 @@ for i in result_comb:
 # Sort the final list of all permutations lexicographically and print each one
 for i in sorted(result_mix):
     print(*i)
+'''
