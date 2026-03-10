@@ -23,7 +23,7 @@ public class Main {
 		}
 		
 		int countryNum = 1;
-		for (int i = 0; i < N; i++) {
+		for (int i = 0; i < N; i++) { // 섬 별로 숫자 입력
 			for (int j = 0; j < M; j++) {
 				if(map[i][j]== -1) {
 					fillNum(i, j, countryNum++);
@@ -35,7 +35,7 @@ public class Main {
 			Arrays.fill(bridge[i], Integer.MAX_VALUE);
 		}
 		
-		for (int i = 0; i < N; i++) {
+		for (int i = 0; i < N; i++) { // 연결할 수 있는 다리 찾기
 			for (int j = 0; j < M; j++) {
 				if(map[i][j] == 0) continue;
 				findBridge(i, j, map[i][j]);
@@ -61,7 +61,7 @@ public class Main {
 			for (int i = 1; i < countryNum; i++) {
 				for (int j = 1; j < countryNum; j++) {
 					if(bridge[i][j] == l ) {
-						if(union(i, j)) {
+						if(union(i, j)) { // 연결 안되어 있으면
 							count++;
 							length += bridge[i][j];
 						}
@@ -71,7 +71,7 @@ public class Main {
 					}
 				}
 			}
-		}		
+		}
 	}
 
 	private static boolean union(int a, int b) {
@@ -90,7 +90,7 @@ public class Main {
 	}
 
 	private static void findBridge(int cy, int cx, int curNum) {
-		for (int i = 0; i < 4; i++) { // 두 방향만 탐색해도 가능
+		for (int i = 0; i < 2; i++) { // 두 방향만 탐색해도 가능
 			int ny = cy + dy[i];
 			int nx = cx + dx[i];
 			int count = 0;
