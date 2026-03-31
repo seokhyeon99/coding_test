@@ -7,7 +7,6 @@ public class Main {
 	static int[] dx = {1, 0, -1, 0};
 	static int[] dy = {0, 1, 0, -1};
 	static List<int[]> list1;
-	static Queue<int[]> q;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,10 +24,8 @@ public class Main {
 				}
 			}
 		}
-		q = new ArrayDeque<>();
-		q.offer(new int[] {0,0});
-		map[0][0] = 9;
-		setAirBFS();
+		
+		setAir(0,0);
 		
 //		for (int i = 0; i < N; i++) {
 //			System.out.println(Arrays.toString(map[i]));
@@ -39,7 +36,6 @@ public class Main {
 		while(!list1.isEmpty()) {
 			MeltingArea();
 			time++;
-//			System.out.println();
 //			for (int i = 0; i < N; i++) {
 //				System.out.println(Arrays.toString(map[i]));
 //			}
@@ -82,8 +78,7 @@ public class Main {
 						int ny = i + dy[d];
 						int nx = j + dx[d];
 						if (isIn(ny, nx) && map[ny][nx]==9) {
-							q.offer(new int[] {i,j});
-							setAirBFS();
+							setAir(i, j);
 							break;
 						}
 					}
@@ -92,29 +87,15 @@ public class Main {
 		}
 	}
 	
-	private static void setAirBFS() {
-		while (!q.isEmpty()) {
-			int[] cur = q.poll();
-//			map[cur[0]][cur[1]] = 9;
-			for (int i = 0; i < 4; i++) {
-				int ny = cur[0] + dy[i];
-				int nx = cur[1] + dx[i];
-				if(isIn(ny, nx) && map[ny][nx]==0) {
-					map[ny][nx]= 9; 
-					q.add(new int[] {ny,nx});
-				}
-			}
-		}
-	}
+	
 
-	//DFS는 콜 스택 때문에 스택오버플로우 에러 남.
-	private static void setAirDFS(int cy, int cx) {
+	private static void setAir(int cy, int cx) {
 		map[cy][cx] = 9;
 		for (int i = 0; i < 4; i++) {
 			int ny = cy + dy[i];
 			int nx = cx + dx[i];
 			if(isIn(ny, nx) && map[ny][nx]==0) {
-				setAirDFS(ny, nx);
+				setAir(ny, nx);
 			}
 		}
 	}
