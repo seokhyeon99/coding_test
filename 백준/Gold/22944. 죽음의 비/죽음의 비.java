@@ -35,10 +35,6 @@ public class Main {
 			}
 		}
 		
-//		for (int i = 0; i < N; i++) {
-//			Arrays.fill(visited[i], -1);
-//		}
-		
 		q = new ArrayDeque<>();
 		
 		visited[sy][sx] = H+1;
@@ -46,8 +42,6 @@ public class Main {
 		moveCount = 0;
 		bfs();
 		
-//		dfs(sy, sx, H + 1, 0, 0, 0);
-
 		System.out.println(minCount == Integer.MAX_VALUE ? -1 : minCount);
 	}
 
@@ -90,48 +84,6 @@ public class Main {
 			moveCount++;
 			
 		}
-	}
-
-	private static void dfs(int cy, int cx, int hp, int umb, int moveCount, int umbCount) {
-//		System.out.println(cy+ " " + cx + " " + hp + " " + umb + " " + map[cy][cx]);
-		if (map[cy][cx] == 'E') {
-			minCount = Math.min(minCount, moveCount);
-		}
-
-		if (moveCount >= minCount)
-			return;
-
-		if (hp == 0)
-			return;
-
-//		if (map[cy][cx] == 'U') {
-//			umb = D;
-//			umbCount++;
-//			map[cy][cx] = 'X';
-//		}
-
-		if (umb > 0)
-			umb--;
-		else
-			hp--;
-
-		for (int i = 0; i < 4; i++) {
-			int ny = cy + dy[i];
-			int nx = cx + dx[i];
-			if (isIn(ny, nx) && visited[ny][nx] < hp+umb) {
-				if(visited[ny][nx] < umbCount)
-//				int temp = visited[ny][nx];
-				visited[ny][nx] = umbCount;
-				dfs(ny, nx, hp, umb, moveCount + 1, umbCount);
-//				visited[ny][nx] = temp;
-				if (map[cy][cx] == 'X') {
-					map[cy][cx] = 'U';
-					umbCount--;
-				}
-			}
-
-		}
-
 	}
 
 	private static boolean isIn(int y, int x) {
