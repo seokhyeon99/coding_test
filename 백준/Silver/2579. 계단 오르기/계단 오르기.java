@@ -19,9 +19,8 @@ public class Main {
 		dp = new int[N+1];
 		dp[1] = stair[1];
 		if(N>=2) dp[2] = stair[1] + stair[2];
-		if(N>=3) dp[3] = Math.max(stair[2], dp[1]) + stair[3];
-		if(N>=4) {
-			for (int i = 4; i <= N; i++) {
+		if(N>=3) {
+			for (int i = 3; i <= N; i++) {
 				dp[i]= Math.max(dp[i-3] + stair[i-1], dp[i-2]) + stair[i]; 
 				
 			}
